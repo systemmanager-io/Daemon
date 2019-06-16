@@ -1,0 +1,26 @@
+image: sandrokeil/typescript
+
+cache:
+  key: "SystemManager-Daemon"
+  paths:
+    - "node_modules/"
+
+
+stages:
+  - build
+  - test
+
+build:
+  stage: build
+  script:
+    - npm install
+    - yarn build
+    - rm .git -rf
+  artifacts:
+    paths:
+      - './build'
+
+test:
+  stage: test
+  script:
+    - echo "No tests are defined yet"

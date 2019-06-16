@@ -1,0 +1,26 @@
+{
+  "name": "SystemManager-Daemon",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "tsc",
+    "watch": "nodemon build/index.js",
+    "watch-debug": "nodemon DEBUG=daemon build/index.js",
+    "watch-build": " tsc --watch",
+    "pkg": "pkg build/index.js"
+  },
+  "description": "The Daemon for SystemManager",
+  "main": "index.js",
+  "license": "MIT",
+  "author": "Tigo Middelkoop (GenericDevelopment)",
+  "dependencies": {
+    "appjs-win32": "0.0.19",
+    "debug": "^4.1.1",
+    "express": "^4.17.1",
+    "pkg": "^4.4.0",
+    "systeminformation": "^4.11.1"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.4",
+    "@types/express": "^4.17.0"
+  }
+}

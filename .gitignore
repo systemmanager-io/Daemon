@@ -1,0 +1,7 @@
+.idea/
+yarn.lock
+index-win.exe
+index-macos
+index-linux
+package-lock.json
+node_modules/
