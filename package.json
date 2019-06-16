@@ -13,7 +13,6 @@
   "license": "MIT",
   "author": "Tigo Middelkoop (GenericDevelopment)",
   "dependencies": {
-    "appjs-win32": "0.0.19",
     "debug": "^4.1.1",
     "express": "^4.17.1",
     "pkg": "^4.4.0",
