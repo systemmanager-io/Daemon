@@ -4,9 +4,7 @@
   "scripts": {
     "build": "tsc",
     "watch": "nodemon build/index.js",
-    "watch-debug": "nodemon DEBUG=daemon build/index.js",
-    "watch-build": " tsc --watch",
-    "pkg": "pkg build/index.js"
+    "watch-build": " tsc --watch"
   },
   "description": "The Daemon for SystemManager",
   "main": "index.js",
