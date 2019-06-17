@@ -17,8 +17,7 @@ export const httpMiddlewareLog = httpLog.extend('middleware');
  */
 bootLog.enabled = true;
 infoLog.enabled = true;
-httpLog.enabled = true;
-httpMiddlewareLog.enabled = true;
+
 
 /*
     Advanced logging when debug setting has been set.
@@ -28,10 +27,9 @@ httpMiddlewareLog.enabled = true;
     2. Advanced
     3. SHIT GO CRAZY (This will log EVERYTHING in the app, even the dependencies)
  */
-
+httpLog.enabled = false;
+httpMiddlewareLog.enabled = false;
 
 /*
-
     Last note: There are loggers (such as the Updater), that only will be activated for certain events. In the updaters case the updater wil disable itself after it has logged its neccesary things
-
  */

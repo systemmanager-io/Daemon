@@ -18,7 +18,7 @@ build:
     - rm .git -rf
   artifacts:
     paths:
-      - './build'
+      - './'
 
 test:
   stage: test

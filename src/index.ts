@@ -24,6 +24,7 @@ bootLog("|                                                    |");
 bootLog("+----------------------------------------------------+");
 checkForUpdates();
 infoLog("SystemManager Daemon Booting up");
+infoLog("SystemManager is running in Portable mode");
 
 // Create a new express application instance
 const app: express.Application = express();
