@@ -13,6 +13,7 @@
   "dependencies": {
     "debug": "^4.1.1",
     "express": "^4.17.1",
+    "lodash": "^4.17.11",
     "pkg": "^4.4.0",
     "systeminformation": "^4.11.1"
   },
