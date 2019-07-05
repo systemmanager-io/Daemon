@@ -4,8 +4,11 @@ import routes from './routes/api'
 
 import auth from "./middleware/auth";
 import logo from "./assets/logo";
-import {bootLog, daemonLog, httpLog, httpMiddlewareLog, infoLog} from "./helper/logger";
+import {bootLog, daemonLog, errorLog, httpLog, httpMiddlewareLog, infoLog} from "./helper/logger";
 import checkForUpdates from "./helper/updater";
+import "./config/config";
+import {NETWORK_PORT} from "./config/config";
+
 
 const bootLogo = true;
 
@@ -22,6 +25,13 @@ bootLog("|                                                    |");
 bootLog("|         Thank you for using SystemManager!         |");
 bootLog("|                                                    |");
 bootLog("+----------------------------------------------------+");
+bootLog("CURRENTKEY", process.env.AUTHKEY);
+// if (authKey === undefined) {
+//     errorLog("+----------------------------------------+")
+//     errorLog("| There is no authKey defined in the env |")
+//     errorLog("+----------------------------------------+")
+//     process.exit()
+// }
 checkForUpdates();
 infoLog("SystemManager Daemon Booting up");
 infoLog("SystemManager is running in Portable mode");
@@ -39,7 +49,7 @@ app.use(routes);
 httpLog("Routes registered");
 
 
-app.listen(3000, function () {
+app.listen(NETWORK_PORT, function () {
     infoLog("🚀 SystemManager Daemon Started");
-    infoLog("🚀 Listening on :port");
+    infoLog("🚀 Listening on", NETWORK_PORT);
 });

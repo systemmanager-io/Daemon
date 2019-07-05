@@ -1,23 +1,27 @@
 import debug from "debug";
+import {debugLevel, nodeEnv} from "../config/config";
 
 
 export const daemonLog = debug('systemmanager');
 export const infoLog = daemonLog.extend('info');
+export const errorLog = daemonLog.extend('error');
 export const bootLog = daemonLog.extend('boot');
 export const updaterLog = daemonLog.extend('updater');
 export const configLog = daemonLog.extend('config');
 export const httpLog = daemonLog.extend('http');
 export const httpMiddlewareLog = httpLog.extend('middleware');
+export const httpMiddlewareAuthLog = httpMiddlewareLog.extend('auth');
 
 /*
     Default Logging in the application.
     You can disable stuff in here. But this is not advertised!
 
-    I know the bootLog is now much of use now. BUT it will be responsible for version controlling! So if you dont want to be missing updates DONT TURN IT OFF.
+    I know the bootLog is not much of use now. BUT it will be responsible for version controlling! So if you dont want to be missing updates DONT TURN IT OFF.
  */
+
 bootLog.enabled = true;
 infoLog.enabled = true;
-
+errorLog.enabled = true;
 
 /*
     Advanced logging when debug setting has been set.
@@ -27,8 +31,12 @@ infoLog.enabled = true;
     2. Advanced
     3. SHIT GO CRAZY (This will log EVERYTHING in the app, even the dependencies)
  */
-httpLog.enabled = false;
-httpMiddlewareLog.enabled = false;
+
+if (debugLevel == 2 || nodeEnv == "local") {
+    httpLog.enabled = true;
+    httpMiddlewareLog.enabled = false;
+    httpMiddlewareAuthLog.enabled = true;
+}
 
 /*
     Last note: There are loggers (such as the Updater), that only will be activated for certain events. In the updaters case the updater wil disable itself after it has logged its neccesary things

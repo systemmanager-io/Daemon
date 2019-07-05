@@ -1,11 +1,11 @@
 import * as express from "express";
 import * as cpuController from "../controllers/cpuController";
+import * as statusController from "../controllers/statusController";
 
 const router: express.Router = express.Router();
 
 router.get('/status', function (req, res) {
-    console.log("YEET");
-    res.send("BOOM");
+    statusController.periodicCheck(req, res)
 })
 
 router.get('/cpu', function (req, res) {

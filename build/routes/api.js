@@ -9,10 +9,10 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = __importStar(require("express"));
 const cpuController = __importStar(require("../controllers/cpuController"));
+const statusController = __importStar(require("../controllers/statusController"));
 const router = express.Router();
 router.get('/status', function (req, res) {
-    console.log("YEET");
-    res.send("BOOM");
+    statusController.periodicCheck(req, res);
 });
 router.get('/cpu', function (req, res) {
     cpuController.getCPU(req, res);

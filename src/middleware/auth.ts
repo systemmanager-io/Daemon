@@ -1,9 +1,9 @@
 import * as express from "express"
-import {httpLog} from "../helper/logger";
+import {httpLog, httpMiddlewareAuthLog} from "../helper/logger";
 
 export default function authMiddleware(req: any, res: any, next: any) {
 
-    httpLog("Authenticating with token");
+    httpMiddlewareAuthLog("Authenticating with token");
 
     next();
 
