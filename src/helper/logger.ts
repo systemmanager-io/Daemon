@@ -1,5 +1,4 @@
 import debug from "debug";
-import {debugLevel, nodeEnv} from "../config/config";
 
 
 export const daemonLog = debug('systemmanager');
@@ -22,6 +21,7 @@ export const httpMiddlewareAuthLog = httpMiddlewareLog.extend('auth');
 bootLog.enabled = true;
 infoLog.enabled = true;
 errorLog.enabled = true;
+configLog.enabled = true;
 
 /*
     Advanced logging when debug setting has been set.
@@ -32,7 +32,7 @@ errorLog.enabled = true;
     3. SHIT GO CRAZY (This will log EVERYTHING in the app, even the dependencies)
  */
 
-if (debugLevel == 2 || nodeEnv == "local") {
+if (2 == 2 || "local" == "local") {
     httpLog.enabled = true;
     httpMiddlewareLog.enabled = false;
     httpMiddlewareAuthLog.enabled = true;

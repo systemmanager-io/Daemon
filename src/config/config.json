@@ -1,0 +1,18 @@
+{
+  "network": {
+    "port": 8181,
+    "bind": "0.0.0.0"
+  },
+
+  "database": {
+    "address": "",
+    "username": "",
+    "password": "",
+    "port": "",
+    "ssl": true
+  },
+
+  "panelUrl": {
+    "authkey": "yayeet"
+  }
+}

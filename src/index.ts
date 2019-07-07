@@ -4,10 +4,9 @@ import routes from './routes/api'
 
 import auth from "./middleware/auth";
 import logo from "./assets/logo";
-import {bootLog, daemonLog, errorLog, httpLog, httpMiddlewareLog, infoLog} from "./helper/logger";
+import {bootLog, configLog, daemonLog, errorLog, httpLog, httpMiddlewareLog, infoLog} from "./helper/logger";
 import checkForUpdates from "./helper/updater";
-import "./config/config";
-import {NETWORK_PORT} from "./config/config";
+import config from "./helper/config";
 
 
 const bootLogo = true;
@@ -25,16 +24,16 @@ bootLog("|                                                    |");
 bootLog("|         Thank you for using SystemManager!         |");
 bootLog("|                                                    |");
 bootLog("+----------------------------------------------------+");
-bootLog("CURRENTKEY", process.env.AUTHKEY);
+infoLog("SystemManager Daemon Booting up");
 // if (authKey === undefined) {
 //     errorLog("+----------------------------------------+")
 //     errorLog("| There is no authKey defined in the env |")
 //     errorLog("+----------------------------------------+")
 //     process.exit()
 // }
-checkForUpdates();
-infoLog("SystemManager Daemon Booting up");
-infoLog("SystemManager is running in Portable mode");
+configLog("Loading config");
+const configFile = config();
+configLog("Config loaded");
 
 // Create a new express application instance
 const app: express.Application = express();
@@ -49,7 +48,7 @@ app.use(routes);
 httpLog("Routes registered");
 
 
-app.listen(NETWORK_PORT, function () {
+app.listen(configFile.network.port, function () {
     infoLog("🚀 SystemManager Daemon Started");
-    infoLog("🚀 Listening on", NETWORK_PORT);
+    infoLog("🚀 Listening on", configFile.network.port);
 });
