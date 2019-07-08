@@ -6,6 +6,7 @@ export const infoLog = daemonLog.extend('info');
 export const errorLog = daemonLog.extend('error');
 export const bootLog = daemonLog.extend('boot');
 export const updaterLog = daemonLog.extend('updater');
+export const portableModeLog = daemonLog.extend('portableMode');
 export const configLog = daemonLog.extend('config');
 export const httpLog = daemonLog.extend('http');
 export const httpMiddlewareLog = httpLog.extend('middleware');
@@ -22,6 +23,9 @@ bootLog.enabled = true;
 infoLog.enabled = true;
 errorLog.enabled = true;
 configLog.enabled = true;
+
+// Enable the portable mode logger when portablemode is turned on
+portableModeLog.enabled = true;
 
 /*
     Advanced logging when debug setting has been set.
