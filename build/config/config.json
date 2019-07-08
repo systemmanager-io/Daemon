@@ -12,7 +12,8 @@
     "ssl": true
   },
 
-  "panelUrl": {
+  "panel": {
+    "url": "yayeet",
     "authkey": "yayeet"
   }
 }

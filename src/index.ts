@@ -5,8 +5,7 @@ import routes from './routes/api'
 import auth from "./middleware/auth";
 import logo from "./assets/logo";
 import {bootLog, configLog, daemonLog, errorLog, httpLog, httpMiddlewareLog, infoLog} from "./helper/logger";
-import checkForUpdates from "./helper/updater";
-import config from "./helper/config";
+import checkConfig, {PORT} from "./helper/config";
 
 
 const bootLogo = true;
@@ -32,23 +31,23 @@ infoLog("SystemManager Daemon Booting up");
 //     process.exit()
 // }
 configLog("Loading config");
-const configFile = config();
+checkConfig();
 configLog("Config loaded");
 
 // Create a new express application instance
 const app: express.Application = express();
 
 
-httpMiddlewareLog("Registering Auth Middleware");
+httpMiddlewareLog("Registering Middleware");
 app.use(auth);
-httpMiddlewareLog("Auth Middleware registered");
+httpMiddlewareLog("Middleware registered");
 
 httpLog("Registering Routes");
 app.use(routes);
 httpLog("Routes registered");
 
 
-app.listen(configFile.network.port, function () {
+app.listen(PORT, function () {
     infoLog("🚀 SystemManager Daemon Started");
-    infoLog("🚀 Listening on", configFile.network.port);
+    infoLog("🚀 Listening on", PORT);
 });
