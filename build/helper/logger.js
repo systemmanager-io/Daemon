@@ -4,14 +4,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const debug_1 = __importDefault(require("debug"));
-const config_1 = require("../config/config");
-exports.daemonLog = debug_1.default('systemmanager');
-exports.infoLog = exports.daemonLog.extend('info');
-exports.errorLog = exports.daemonLog.extend('error');
-exports.bootLog = exports.daemonLog.extend('boot');
-exports.updaterLog = exports.daemonLog.extend('updater');
-exports.configLog = exports.daemonLog.extend('config');
-exports.httpLog = exports.daemonLog.extend('http');
+//
+const daemonLog = debug_1.default('systemmanager');
+//Daemon Log
+exports.infoLog = daemonLog.extend('info');
+exports.errorLog = daemonLog.extend('error');
+exports.bootLog = daemonLog.extend('boot');
+exports.updaterLog = daemonLog.extend('updater');
+// PortableMode Log
+const portableModeLog = daemonLog.extend('portableMode');
+exports.portableModeInfoLog = portableModeLog.extend('info');
+exports.portableModeErrorLog = portableModeLog.extend('error');
+// Config Log
+exports.configLog = daemonLog.extend('config');
+// HTTP Log
+exports.httpLog = daemonLog.extend('http');
 exports.httpMiddlewareLog = exports.httpLog.extend('middleware');
 exports.httpMiddlewareAuthLog = exports.httpMiddlewareLog.extend('auth');
 /*
@@ -23,6 +30,10 @@ exports.httpMiddlewareAuthLog = exports.httpMiddlewareLog.extend('auth');
 exports.bootLog.enabled = true;
 exports.infoLog.enabled = true;
 exports.errorLog.enabled = true;
+exports.configLog.enabled = true;
+// Enable the portable mode logger when portablemode is turned on
+exports.portableModeInfoLog.enabled = true;
+exports.portableModeErrorLog.enabled = true;
 /*
     Advanced logging when debug setting has been set.
 
@@ -31,7 +42,7 @@ exports.errorLog.enabled = true;
     2. Advanced
     3. SHIT GO CRAZY (This will log EVERYTHING in the app, even the dependencies)
  */
-if (config_1.debugLevel == 2 || config_1.nodeEnv == "local") {
+if (2 == 2 || "local" == "local") {
     exports.httpLog.enabled = true;
     exports.httpMiddlewareLog.enabled = false;
     exports.httpMiddlewareAuthLog.enabled = true;

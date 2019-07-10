@@ -13,7 +13,7 @@
   },
 
   "panel": {
-    "url": "yayeet",
+    "url": "http://localhost",
     "authKey": "yayeet",
     "portableMode" : true
   }

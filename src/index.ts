@@ -1,4 +1,3 @@
-// lib/app.ts
 import express from 'express';
 import routes from './routes/api'
 
@@ -6,15 +5,14 @@ import auth from "./middleware/auth";
 import logo from "./assets/logo";
 import {
     bootLog,
-    configLog, errorLog,
+    configLog,
     httpLog,
     httpMiddlewareLog,
-    infoLog,
-    portableModeLog
+    infoLog, portableModeInfoLog,
 } from "./helper/logger";
-import checkConfig, {AUTHKEY, PORT, PORTABLEMODE} from "./helper/config";
+import checkConfig, {PORT, PORTABLEMODE} from "./helper/config";
 import * as schedule from "node-schedule"
-import pingPanel from "./controllers/portableMode/pingPanelController";
+import reportStatus from "./controllers/portableMode/pingController";
 
 
 const bootLogo = true;
@@ -58,13 +56,8 @@ if (!PORTABLEMODE) {
     });
 
 } else {
-    infoLog("=============================================");
-    infoLog("SystemManager Daemon is running in portable mode");
-    infoLog("Some stuff is also not available, just yet (such as RAM usage, CPU usage in the panel");
-    infoLog("The panel will check on it own if an device pinged in the last 5 minutes, otherwise it will be marked as offline");
-    infoLog("=============================================");
-
-    infoLog("Scheduling the status job for every 5 minutes");
-    schedule.scheduleJob('*/5 * * * *', pingPanel);
+    reportStatus();
+    portableModeInfoLog("Scheduling the status job for every 5 minutes");
+    schedule.scheduleJob('*/5 * * * *', reportStatus);
     infoLog("🚀 SystemManager Daemon started in Portable Mode");
 }

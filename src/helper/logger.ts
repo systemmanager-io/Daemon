@@ -1,13 +1,23 @@
 import debug from "debug";
 
+//
+const daemonLog = debug('systemmanager');
 
-export const daemonLog = debug('systemmanager');
+//Daemon Log
 export const infoLog = daemonLog.extend('info');
 export const errorLog = daemonLog.extend('error');
 export const bootLog = daemonLog.extend('boot');
 export const updaterLog = daemonLog.extend('updater');
-export const portableModeLog = daemonLog.extend('portableMode');
+
+// PortableMode Log
+const portableModeLog = daemonLog.extend('portableMode');
+export const portableModeInfoLog = portableModeLog.extend('info');
+export const portableModeErrorLog = portableModeLog.extend('error');
+
+// Config Log
 export const configLog = daemonLog.extend('config');
+
+// HTTP Log
 export const httpLog = daemonLog.extend('http');
 export const httpMiddlewareLog = httpLog.extend('middleware');
 export const httpMiddlewareAuthLog = httpMiddlewareLog.extend('auth');
@@ -25,7 +35,8 @@ errorLog.enabled = true;
 configLog.enabled = true;
 
 // Enable the portable mode logger when portablemode is turned on
-portableModeLog.enabled = true;
+portableModeInfoLog.enabled = true;
+portableModeErrorLog.enabled = true;
 
 /*
     Advanced logging when debug setting has been set.
