@@ -56,8 +56,8 @@ if (!PORTABLEMODE) {
     });
 
 } else {
-    reportStatus();
     portableModeInfoLog("Scheduling the status job for every 5 minutes");
-    schedule.scheduleJob('*/1 * * * * *', reportStatus);
+    schedule.scheduleJob('*/5 * * * *', reportStatus);
     infoLog("🚀 SystemManager Daemon started in Portable Mode");
+    reportStatus();
 }

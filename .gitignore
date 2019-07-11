@@ -5,3 +5,4 @@ index-macos
 index-linux
 package-lock.json
 node_modules/
+build/

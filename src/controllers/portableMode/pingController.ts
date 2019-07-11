@@ -2,23 +2,51 @@ import {infoLog, portableModeErrorLog, portableModeInfoLog} from "../../helper/l
 import fetch from "node-fetch"
 import {AUTHTOKEN, DEVICEID, PANELURL} from "../../helper/config";
 import * as si from "systeminformation";
+import {loadavg} from "os";
 
 export default async function reportStatus() {
 
     portableModeInfoLog("Reporting status to panel")
 
-    si.battery().then(data => infoLog(data))
+    portableModeInfoLog("Collecting data");
+    portableModeInfoLog("Collecting Battery");
+    const battery = await si.battery();
+    portableModeInfoLog("Collecting Cpu");
+    const cpu = await si.cpu();
+
+    portableModeInfoLog("Collecting Graphics");
+    const gpu = await si.graphics();
+
+    portableModeInfoLog("Collecting Mem");
+    const mem = await si.mem();
+
+    portableModeInfoLog("Collecting Load");
+    const load = await si.currentLoad();
+
+    portableModeInfoLog("Collecting Disks");
+    const disks = await si.diskLayout();
+
+    // portableModeInfoLog("Collecting ");
+    // const smart = await si.().catch(err => portableModeErrorLog(err))
+
+
+
 
     let body: any = {
         "CPU": {
-            "avg": 0
+            "speed": cpu.speed
         },
         "RAM": {
-            "avg": 0
+            "free": mem.free,
+            "used": mem.used
+        },
+        "LOAD": {
+            "avg": load.avgload,
+            // "cpus": load.cpus,
         },
         "BATT": {
-            "percent": 0,
-            "charging": true
+            "percent": battery.percent,
+            "charging": battery.ischarging
         }
     };
 
