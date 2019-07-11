@@ -33,9 +33,13 @@ export function loadConfig() {
 export const PORT = loadConfig().network.port;
 export const BIND = loadConfig().network.bind;
 
-//Autht
+//Auth for panel
 export const AUTHKEY = loadConfig().panel.authKey;
 
+//Portablemode
 export const PANELURL = loadConfig().portableMode.url;
 export const PORTABLEMODE = loadConfig().portableMode.portableMode;
+export const DEVICEID = loadConfig().portableMode.deviceId;
+export const AUTHTOKEN = loadConfig().portableMode.authToken;
+
 
